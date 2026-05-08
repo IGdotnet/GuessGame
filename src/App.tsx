@@ -16,7 +16,9 @@ export default function App() {
         <Header current={5} max={10} onRestart={handleRestartGame}/>
         <Tip tip="Linguagem de programação dinâmica"/>
 
-        <Letter value="R"/>
+        <div className={styles.word}>
+          <Letter value="R"/>
+        </div>
       </main>
     </div>
   )
