@@ -36,6 +36,10 @@ export default function App() {
     startGame()
   },[])
 
+  if(!challenge) {
+    return
+  }
+
   return (
     <div className={styles.container}>
       <main>
@@ -43,7 +47,11 @@ export default function App() {
         <Tip tip="Linguagem de programação dinâmica"/>
 
         <div className={styles.word}>
-          <Letter value="R"/>
+          {
+            challenge.word.split("").map(() => (
+              <Letter value="" />
+            ))
+          }
         </div>
 
         <h4>Palpite</h4>
