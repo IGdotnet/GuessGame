@@ -49,6 +49,7 @@ export default function App() {
     const exists = lettersUsed.find((usedLetter) => usedLetter.value.toUpperCase() === value)
 
     if(exists) {
+      setLetter("")
       return alert ("Você já tentou a letra " + value)
     }
 
@@ -66,9 +67,33 @@ export default function App() {
     setLetter("")
   }
 
+
+  function endGame(message: string) {
+    alert(message)
+    startGame()
+  }
+
   useEffect(() => {
     startGame()
   },[])
+
+
+  useEffect(() => {
+    if(!challenge) {
+      return
+    }
+
+    setTimeout(() => {
+      if(score === challenge.word.length){
+        return endGame("Parabéns, você descobriu a palavra!")
+      }
+
+      if(lettersUsed.length === challenge.word.length + 5) {
+        return endGame("Você usou todas as tentativas")
+      }
+    }, 200)
+  },[score, lettersUsed.length])
+
 
   if(!challenge) {
     return
@@ -77,7 +102,7 @@ export default function App() {
   return (
     <div className={styles.container}>
       <main>
-        <Header current={attempts} max={10} onRestart={handleRestartGame}/>
+        <Header current={attempts} max={challenge.word.length + 5} onRestart={handleRestartGame}/>
         <Tip tip={challenge.tip} />
 
         <div className={styles.word}>
