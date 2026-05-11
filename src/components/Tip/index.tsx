@@ -11,7 +11,7 @@ export function Tip({tip}: Props) {
             <img src={tipIcon} alt="Ícone de dica"/>
             <div>
                 <h3>Dica</h3>
-                <p>Uma das linguagens de programação mais dinâmicas</p>
+                <p>{tip}</p>
             </div>
         </div>
     )
